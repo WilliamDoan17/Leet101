@@ -16,7 +16,7 @@
     padding: 1rem 2rem;
 }
 
-.schedule-header {
+.preference-header {
     text-transform: uppercase;
     padding: 0;
     font-weight: 600;
@@ -27,6 +27,7 @@
 
 .schedule-input-container {
     flex: 1;
+    margin-top: .25rem;
 }
 
 .schedule-label {
@@ -34,3 +35,18 @@
     line-height: 1rem;
     color: rgb(0, 0, 0);
 }
+
+.difficulty-checkboxes-container {
+    flex: 1;
+    margin-top: .25rem;
+}
+
+.difficulty-label {
+    text-transform: capitalize;
+    font-weight: 500;
+    margin-left: .75rem;
+    font-size: .875rem;
+    line-height: 1;
+    cursor: pointer;
+}
+

@@ -57,6 +57,8 @@ const SliderInput = ({ minValue, maxValue, value, setValue, fillColor = 'rgb(79,
     )
 }
 
+
+
 const PreferencesHeader = ({ message }) => {
     const headerStyle = {
         backgroundColor: 'rgb(79, 70, 229)',
@@ -78,7 +80,7 @@ const SchedulePreference = ({ weekCount, setWeekCount, hoursPerWeek, setHoursPer
     }
     return (
         <div className = {`${styles['preference-container']}`}> 
-            <legend className = {`${styles['schedule-header']}`}>Schedule</legend>
+            <legend className = {`${styles['preference-header']}`}>Schedule</legend>
             <div className = {`${styles['schedule-input-container']}`}>
                 <label className = {`${styles['schedule-label']}`}>{weekCount} weeks</label>
                 <SliderInput 
@@ -101,7 +103,87 @@ const SchedulePreference = ({ weekCount, setWeekCount, hoursPerWeek, setHoursPer
     )
 }
 
-const Preferences = ({ weekCount, hoursPerWeek, difficultiesChosen, topicsChosen, setWeekCount, setHoursPerWeek, setDifficultiesChosen, setTopicsChosen }) => {
+const DifficultyCheckbox = ({ difficulty, labelColor = 'rgb(0, 0, 0)', onChange, unCheckedColor = '#fff',  defaultChecked }) => {
+    const [checked, setChecked] = useState(defaultChecked);
+    const handleChange = (e) => {
+        const newChecked = !checked;
+        setChecked(newChecked);
+        onChange && onChange(newChecked, difficulty);
+    }
+    const diffcultyLabelStyle = {
+        color: labelColor,
+    }
+    const checkboxStyle = {
+        padding: 0,
+        margin: 0,
+        width: '1rem',
+        height: '1rem',
+        accentColor: labelColor,
+    }
+    const fakeCheckboxStyle = {
+        position: 'absolute',
+        border: `1px solid ${labelColor}`,
+        borderRadius: '3px',
+        display: checked ? 'none' : 'block',
+        cursor: 'pointer',
+        padding: 0,
+        margin: 0,
+        backgroundColor: unCheckedColor,
+        width: '1rem',
+        height: '1rem',
+    }
+    const containerStyle = {
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+    }
+    return (
+        <>
+            <div
+                style = {containerStyle}
+            >
+                <input
+                    type = 'checkbox'
+                    style = {checkboxStyle}
+                    checked = {checked}
+                    name = {difficulty}
+                    id = {difficulty}
+                    onChange = {handleChange}
+                ></input>
+                <div
+                    style = {fakeCheckboxStyle}
+                    onClick = {handleChange}
+                ></div>
+                <label
+                    className = {`${styles['difficulty-label']}`}
+                    style = {diffcultyLabelStyle}
+                    htmlFor = {difficulty}
+                >{difficulty}</label>
+            </div>
+        </>
+    )
+}
+
+const DifficultiesPreference = ({ difficultiesChosen, setDifficultiesChosen, difficulties }) => {
+    return (
+        <div
+            className = {`${styles['preference-container']}`}
+        >
+            <legend className = {`${styles['preference-header']}`}>Difficulty</legend>
+            <div
+                className = {`${styles['difficulty-checkboxes-container']}`}
+            >
+                <DifficultyCheckbox
+                    difficulty = 'easy'
+                >
+                </DifficultyCheckbox>
+            </div>
+        </div>
+    )
+}
+
+const Preferences = ({ weekCount, hoursPerWeek, difficultiesChosen, topicsChosen, setWeekCount, setHoursPerWeek, setDifficultiesChosen, setTopicsChosen, difficulties }) => {
     const preferencesMessage = 'Indicate your preferences and I will recommend the best LeetCode questions for you to practice.';
     return (
         <div
@@ -116,6 +198,12 @@ const Preferences = ({ weekCount, hoursPerWeek, difficultiesChosen, topicsChosen
                 hoursPerWeek = {hoursPerWeek}
                 setHoursPerWeek = {setHoursPerWeek}
             ></SchedulePreference>
+            <DifficultiesPreference
+                difficultiesChosen = {difficultiesChosen}
+                setDifficultiesChosen = {setDifficultiesChosen}
+                difficulties = {difficulties}
+            >
+            </DifficultiesPreference>
         </div>
     )
 };
