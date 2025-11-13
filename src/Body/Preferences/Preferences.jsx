@@ -74,9 +74,10 @@ const PreferencesHeader = ({ message }) => {
     )
 }
 
-const SchedulePreference = ({ weekCount, setWeekCount, hoursPerWeek, setHoursPerWeek }) => {
+const SchedulePreference = ({ weekCount, setWeekCount, hoursPerWeek, setHoursPerWeek, onChange }) => {
     const handleInputChange = (newValue, setValue) => {
         setValue(newValue);
+        onChange && onChange(newValue, setValue);
     }
     return (
         <div className = {`${styles['preference-container']}`}> 
@@ -137,6 +138,7 @@ const DifficultyCheckbox = ({ difficulty, labelColor = 'rgb(0, 0, 0)', onChange,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+        marginTop: '.5rem',
     }
     return (
         <>
@@ -166,6 +168,17 @@ const DifficultyCheckbox = ({ difficulty, labelColor = 'rgb(0, 0, 0)', onChange,
 }
 
 const DifficultiesPreference = ({ difficultiesChosen, setDifficultiesChosen, difficulties }) => {
+    const handleDifficultyChange = (newChecked, difficulty) => {
+        let newDifficultiesChosen = [];
+        if (newChecked) {
+            newDifficultiesChosen = [...difficultiesChosen, difficulty];
+        } else {
+            newDifficultiesChosen = difficultiesChosen.filter((_difficulty) => {
+                if (_difficulty !== difficulty) return true;
+            })
+        }
+        setDifficultiesChosen(newDifficultiesChosen);
+    }
     return (
         <div
             className = {`${styles['preference-container']}`}
@@ -174,16 +187,24 @@ const DifficultiesPreference = ({ difficultiesChosen, setDifficultiesChosen, dif
             <div
                 className = {`${styles['difficulty-checkboxes-container']}`}
             >
-                <DifficultyCheckbox
-                    difficulty = 'easy'
-                >
-                </DifficultyCheckbox>
+                {difficulties.map(({ difficulty, labelColor }) => {
+                    return <DifficultyCheckbox
+                        key = {difficulty}
+                        difficulty={difficulty}
+                        labelColor = {labelColor}
+                        onChange = {handleDifficultyChange}
+                        defaultChecked = {difficultiesChosen.includes(difficulty)}
+                    ></DifficultyCheckbox> 
+                })}
             </div>
         </div>
     )
 }
 
-const Preferences = ({ weekCount, hoursPerWeek, difficultiesChosen, topicsChosen, setWeekCount, setHoursPerWeek, setDifficultiesChosen, setTopicsChosen, difficulties }) => {
+const Preferences = ({ weekCount, hoursPerWeek, difficultiesChosen, topicsChosen, setWeekCount, setHoursPerWeek, setDifficultiesChosen, setTopicsChosen, difficulties, onChange }) => {
+    const handleChange = (newValue, setValue) => {
+        onChange && onChange(newValue, setValue);
+    }
     const preferencesMessage = 'Indicate your preferences and I will recommend the best LeetCode questions for you to practice.';
     return (
         <div
@@ -197,6 +218,7 @@ const Preferences = ({ weekCount, hoursPerWeek, difficultiesChosen, topicsChosen
                 setWeekCount={setWeekCount}
                 hoursPerWeek = {hoursPerWeek}
                 setHoursPerWeek = {setHoursPerWeek}
+                onChange = {handleChange}
             ></SchedulePreference>
             <DifficultiesPreference
                 difficultiesChosen = {difficultiesChosen}

@@ -1,11 +1,16 @@
 import styles from './Body.module.css';
 import { useState } from 'react';
 import Preferences from './Preferences/Preferences';
-import { difficulties } from '../../constants/constList';
+import { difficulties, defaultWeekCount, defaultHoursPerWeek, defaultDifficultiesChosen } from '../../constants/constList';
 
 const Body = () => {
-    const [weekCount, setWeekCount] = useState(8);
-    const [hoursPerWeek, setHoursPerWeek] = useState(8);
+    const [weekCount, setWeekCount] = useState(defaultWeekCount);
+    const [hoursPerWeek, setHoursPerWeek] = useState(defaultHoursPerWeek);
+    const [difficultiesChosen, setDifficultiesChosen] = useState(defaultDifficultiesChosen);
+
+    const handleChange = (newValue, setValue) => {
+        setValue(newValue);
+    }
     return (
         <>
             <div
@@ -16,7 +21,10 @@ const Body = () => {
                     setWeekCount = {setWeekCount}
                     hoursPerWeek = {hoursPerWeek}
                     setHoursPerWeek = {setHoursPerWeek}
+                    difficultiesChosen={difficultiesChosen}
+                    setDifficultiesChosen={setDifficultiesChosen}
                     difficulties = {difficulties}
+                    onChange = {handleChange}
                 >
                 </Preferences>
             </div>
