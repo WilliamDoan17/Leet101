@@ -17,16 +17,16 @@ const TopicCheckbox = ({ topic, onChange, checked }) => {
                     className = {`${styles.checkbox}`}
                     type = 'checkbox'
                     checked = {checked}
-                    name = {topic}
-                    id = {topic}
+                    name = {topic.name}
+                    id = {topic.name}
                     onChange = {handleChange}
                 >
                 </input>
                 <label
                     className = {`${styles['checkbox-label']}`}
-                    htmlFor = {topic}
+                    htmlFor = {topic.name}
                 >
-                    {topic}
+                    {topic.name}
                 </label>
             </div>
         </>
@@ -96,7 +96,7 @@ const ChangeTopicsModal = ({ topics, topicsChosen, setTopicsChosen, isRequesting
                             return (
                                 <>
                                     <TopicCheckbox
-                                        key = {topic}
+                                        key = {topic.name}
                                         topic = {topic}
                                         onChange = {onChangeTopicsChosen}
                                         checked = {topicsChosen.includes(topic)}
