@@ -46,7 +46,8 @@ const Body = () => {
                 >
                 </ChangeTopicsModal>
                 <ProblemSet
-                
+                    weekCount = {weekCount}
+                    hoursPerWeek = {hoursPerWeek}
                 >                    
                 </ProblemSet>
             </div>

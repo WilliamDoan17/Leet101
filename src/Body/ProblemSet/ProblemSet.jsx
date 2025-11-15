@@ -1,5 +1,6 @@
 import styles from './ProblemSet.module.css'
 import { useState } from 'react';
+import QuestionSummary from './QuestionSummary/QuestionSummary'
 
 const ProblemSet = ({ weekCount, hoursPerWeek, difficultiesChosen, topicsChosen }) => {
 
@@ -13,13 +14,17 @@ const ProblemSet = ({ weekCount, hoursPerWeek, difficultiesChosen, topicsChosen 
                 <h1
                     className = {`${styles['problem-set-header']}`}
                 >
-                    Problem67 Questions
+                    Problem67 questions
                 </h1>
                 <p
                     className = {`${styles['problem-set-intro']}`}
                 >
                     Customize LeetCode study plans according to your needs. You are recommended to work on the questions in order.
                 </p>
+                <QuestionSummary
+                    totalTime = {weekCount * hoursPerWeek}
+                >   
+                </QuestionSummary>
             </main>
         </>
     )
