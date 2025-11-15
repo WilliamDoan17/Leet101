@@ -11,6 +11,8 @@ const Body = () => {
     const [topicsChosen, setTopicsChosen] = useState(defaultTopicsChosen); 
     const [isRequestingChangeTopics, setIsRequestingChangeTopics] = useState(false);
 
+    console.log(topicsChosen);
+
     const onChangeTopicsChosenRequest = (value) => {
         setIsRequestingChangeTopics(value);
     }
