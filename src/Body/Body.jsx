@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Preferences from './Preferences/Preferences';
 import { difficulties, defaultWeekCount, defaultHoursPerWeek, defaultDifficultiesChosen, topics, defaultTopicsChosen} from '../../constants/constList';
 import ChangeTopicsModal from './ChangeTopicsModal/ChangeTopicsModal';
+import ProblemSet from './ProblemSet/ProblemSet';
 
 const Body = () => {
     const [weekCount, setWeekCount] = useState(defaultWeekCount);
@@ -44,6 +45,10 @@ const Body = () => {
                     onChangeTopicsChosenRequest = {onChangeTopicsChosenRequest}
                 >
                 </ChangeTopicsModal>
+                <ProblemSet
+                
+                >                    
+                </ProblemSet>
             </div>
         </>
     )
