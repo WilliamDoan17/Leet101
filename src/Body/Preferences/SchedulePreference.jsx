@@ -57,10 +57,9 @@ const SliderInput = ({ minValue, maxValue, value, setValue, fillColor = 'rgb(79,
 }
 
 
-const SchedulePreference = ({ weekCount, setWeekCount, hoursPerWeek, setHoursPerWeek, onChange }) => {
+const SchedulePreference = ({ weekCount, setWeekCount, hoursPerWeek, setHoursPerWeek }) => {
     const handleInputChange = (newValue, setValue) => {
         setValue(newValue);
-        onChange && onChange(newValue, setValue);
     }
     return (
         <div className = {`${styles['preference-container']}`}> 

@@ -2,19 +2,17 @@ import styles from './Body.module.css';
 import { useState } from 'react';
 import Preferences from './Preferences/Preferences';
 import { difficulties, defaultWeekCount, defaultHoursPerWeek, defaultDifficultiesChosen, topics, defaultTopicsChosen} from '../../constants/constList';
+import ChangeTopicsModal from './ChangeTopicsModal/ChangeTopicsModal';
 
 const Body = () => {
     const [weekCount, setWeekCount] = useState(defaultWeekCount);
     const [hoursPerWeek, setHoursPerWeek] = useState(defaultHoursPerWeek);
     const [difficultiesChosen, setDifficultiesChosen] = useState(defaultDifficultiesChosen);
     const [topicsChosen, setTopicsChosen] = useState(defaultTopicsChosen); 
+    const [isRequestingChangeTopics, setIsRequestingChangeTopics] = useState(false);
 
-    const handleChange = (newValue, setValue) => {
-        setValue(newValue);
-    }
-
-    const onChangeTopicsChosen = () => {
-        return 0;
+    const onChangeTopicsChosenRequest = (value) => {
+        setIsRequestingChangeTopics(value);
     }
 
     return (
@@ -33,10 +31,17 @@ const Body = () => {
                     topics = {topics}
                     topicsChosen={topicsChosen}
                     setTopicsChosen={setTopicsChosen}
-                    onChange = {handleChange}
-                    onChangeTopicsChosen = {onChangeTopicsChosen}
+                    onChangeTopicsChosenRequest = {onChangeTopicsChosenRequest}
                 >
                 </Preferences>
+                <ChangeTopicsModal
+                    topics = {topics}
+                    topicsChosen = {topicsChosen}
+                    setTopicsChosen = {setTopicsChosen}
+                    isRequestingChangeTopics = {isRequestingChangeTopics}
+                    onChangeTopicsChosenRequest = {onChangeTopicsChosenRequest}
+                >
+                </ChangeTopicsModal>
             </div>
         </>
     )

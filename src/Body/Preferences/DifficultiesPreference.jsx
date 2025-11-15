@@ -58,13 +58,15 @@ const DifficultyCheckbox = ({ difficulty, labelColor = 'rgb(0, 0, 0)', onChange,
                     className = {`${styles['difficulty-label']}`}
                     style = {diffcultyLabelStyle}
                     htmlFor = {difficulty}
-                >{difficulty.level}</label>
+                >
+                    {difficulty.level}
+                </label>
             </div>
         </>
     )
 }
 
-const DifficultiesPreference = ({ difficultiesChosen, setDifficultiesChosen, difficulties, onChange }) => {
+const DifficultiesPreference = ({ difficultiesChosen, setDifficultiesChosen, difficulties }) => {
     const handleDifficultyChange = (newChecked, difficulty) => {
         let newDifficultiesChosen = [];
         if (newChecked) {
@@ -78,7 +80,6 @@ const DifficultiesPreference = ({ difficultiesChosen, setDifficultiesChosen, dif
             })
         }
         setDifficultiesChosen(newDifficultiesChosen);
-        onChange && onChange(newDifficultiesChosen, setDifficultiesChosen);
     }
     return (
         <div

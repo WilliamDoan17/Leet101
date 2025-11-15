@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from './Preferences.module.css';
 
-const TopicsPreference = ({ topics, topicsChosen, onChange }) => {
+const TopicsPreference = ({ topics, topicsChosen, onRequest }) => {
     const containerStyle = {
         borderBottom: 0
     }
@@ -25,7 +25,7 @@ const TopicsPreference = ({ topics, topicsChosen, onChange }) => {
             >
                 <span>{topicsCountMessage()} topics chosen</span>
                 <button
-                    onClick = {onChange}
+                    onClick = {() => onRequest(true)}
                 >
                     Change
                 </button>

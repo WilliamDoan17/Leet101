@@ -30,7 +30,7 @@ export const topics = [
   "Recursion",
   "Stack",
   "String",
-  "Trie"
+  "Trie" 
 ]
 
 export const defaultWeekCount = 8

@@ -19,10 +19,7 @@ const PreferencesHeader = ({ message }) => {
     )
 }
 
-const Preferences = ({ topics, weekCount, hoursPerWeek, difficultiesChosen, topicsChosen, setWeekCount, setHoursPerWeek, setDifficultiesChosen, setTopicsChosen, difficulties, onChange, onChangeTopicsChosen }) => {
-    const handleChange = (newValue, setValue) => {
-        onChange && onChange(newValue, setValue);
-    }
+const Preferences = ({ topics, weekCount, hoursPerWeek, difficultiesChosen, topicsChosen, setWeekCount, setHoursPerWeek, setDifficultiesChosen, setTopicsChosen, difficulties, onChangeTopicsChosenRequest }) => {
     const preferencesMessage = 'Indicate your preferences and I will recommend the best LeetCode questions for you to practice.';
     return (
         <div
@@ -36,21 +33,18 @@ const Preferences = ({ topics, weekCount, hoursPerWeek, difficultiesChosen, topi
                 setWeekCount={setWeekCount}
                 hoursPerWeek = {hoursPerWeek}
                 setHoursPerWeek = {setHoursPerWeek}
-                onChange = {handleChange}
             ></SchedulePreference>
             <DifficultiesPreference
                 difficultiesChosen = {difficultiesChosen}
                 setDifficultiesChosen = {setDifficultiesChosen}
                 difficulties = {difficulties}
-                onChange={handleChange}
             >
             </DifficultiesPreference>
             <TopicsPreference
                 topics = {topics}
                 topicsChosen = {topicsChosen}
-                onChange = {onChangeTopicsChosen}
-            >
-                
+                onRequest = {onChangeTopicsChosenRequest}
+            >        
             </TopicsPreference>
         </div>
     )
