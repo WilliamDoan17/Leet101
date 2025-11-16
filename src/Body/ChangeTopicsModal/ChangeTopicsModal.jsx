@@ -51,10 +51,9 @@ const ChangeTopicsModal = ({ topics, topicsChosen, setTopicsChosen, isRequesting
     const onChangeTopicsChosen = (value, topic) => {
         const newTopicsChosen = [];
         if (value) {
-            topicsChosen.forEach((_topic) => {
-                newTopicsChosen.push(_topic);
+            topics.forEach(_topic => {
+                if (topicsChosen.includes(_topic) || _topic === topic) newTopicsChosen.push(_topic);
             })
-            newTopicsChosen.push(topic); 
         } else {
             topicsChosen.forEach((_topic) => {
                 if (_topic !== topic) newTopicsChosen.push(_topic);

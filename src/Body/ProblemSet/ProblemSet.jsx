@@ -1,12 +1,14 @@
 import styles from './ProblemSet.module.css'
 import { useState } from 'react';
 import QuestionSummary from './QuestionSummary/QuestionSummary'
-import { generateProblemChosenList } from './../../../constants/problemSet';
+import { generateProblemChosenList, generateWeeklyProblemSets } from './../../../constants/problemSet';
+import WeeklyProblemSet from './WeeklyProblemSet/WeeklyProblemSet';
 
 const ProblemSet = ({ weekCount, hoursPerWeek, difficultiesChosen, topicsChosen }) => {
 
     const problemChosenList = generateProblemChosenList(weekCount, hoursPerWeek, difficultiesChosen, topicsChosen);
     const problemCount = problemChosenList.length;
+    const weeklyProblemSet = generateWeeklyProblemSets(problemChosenList, weekCount, hoursPerWeek, difficultiesChosen);
 
     return (
         <>
@@ -30,6 +32,10 @@ const ProblemSet = ({ weekCount, hoursPerWeek, difficultiesChosen, topicsChosen 
                     difficultiesChosen = {difficultiesChosen}
                 >   
                 </QuestionSummary>
+                <WeeklyProblemSet
+                    weeklyProblemSet = {weeklyProblemSet}
+                >
+                </WeeklyProblemSet>
             </main>
         </>
     )

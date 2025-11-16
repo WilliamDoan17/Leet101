@@ -70,9 +70,8 @@ const DifficultiesPreference = ({ difficultiesChosen, setDifficultiesChosen, dif
     const handleDifficultyChange = (newChecked, difficulty) => {
         let newDifficultiesChosen = [];
         if (newChecked) {
-            newDifficultiesChosen = [...difficultiesChosen];
             difficulties.forEach((_difficulty) => {
-                if (_difficulty === difficulty) newDifficultiesChosen.push(_difficulty);
+                if (difficultiesChosen.includes(_difficulty) || _difficulty === difficulty) newDifficultiesChosen.push(_difficulty);
             });
         } else {
             newDifficultiesChosen = difficultiesChosen.filter((_difficulty) => {

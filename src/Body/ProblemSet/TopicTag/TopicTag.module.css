@@ -1,0 +1,14 @@
+.topic-tag {
+    margin: 0 .25rem .25rem 0;
+    border-radius: 9999px;
+    padding: .125rem .625rem;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(243 244 246);
+    align-items: center;
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 1rem;
+    color: rgb(31 41 55);
+    text-transform: capitalize;
+}

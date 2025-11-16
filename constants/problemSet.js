@@ -564,9 +564,50 @@ export const generateProblemChosenList = (weekCount, hoursPerWeek, difficultiesC
                 break;
             }
         }
-        
-        console.log(`Difficulty ${level}: Budget ${budget.toFixed(0)}min, Used ${accumulatedTime.toFixed(0)}min, Selected ${resultingList.length} problems`);
     });
     
     return resultingList;
 };
+
+export const generateWeeklyProblemSets = (problemChosenList, weekCount, hoursPerWeek) => {
+    const weeklyMinutes = hoursPerWeek * 60;
+    const weeklyProblemSets = [];
+    
+    // Sort problems: first by difficulty (easy -> medium -> hard), then by weight (highest first)
+    const sortedProblems = [...problemChosenList].sort((a, b) => {
+        // Primary: Difficulty order (easy first, then medium, then hard)
+        const difficultyOrder = { easy: 0, medium: 1, hard: 2 };
+        const difficultyDiff = difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
+        
+        if (difficultyDiff !== 0) return difficultyDiff;
+        
+        // Secondary: Weight (highest first within same difficulty)
+        return b.weight - a.weight;
+    });
+    
+    // Initialize empty arrays for each week
+    for (let i = 0; i < weekCount; i++) {
+        weeklyProblemSets.push([]);
+    }
+    
+    // Distribute ALL problems across weeks
+    let currentWeek = 0;
+    let weekTimeUsed = 0;
+    
+    for (const problem of sortedProblems) {
+        // If current week is full, move to next week
+        if (weekTimeUsed + problem.timeTaken > weeklyMinutes && currentWeek < weekCount - 1) {
+            currentWeek++;
+            weekTimeUsed = 0;
+        }
+        
+        // Add problem to current week
+        weeklyProblemSets[currentWeek].push(problem);
+        weekTimeUsed += problem.timeTaken;
+    }
+    
+    return weeklyProblemSets;
+};
+
+export const getLabelColorFromDifficulty = new Map();
+difficulties.forEach(difficulty => getLabelColorFromDifficulty.set(difficulty.level, difficulty.labelColor));

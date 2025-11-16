@@ -1,16 +1,5 @@
 import styles from './QuestionSummary.module.css'
-
-const TopicTag = ({ topicName, count }) => {
-    return (
-        <>
-            <span
-                className = {`${styles['topic-tag']}`}
-            >
-                {topicName} : {count}
-            </span>
-        </>
-    )
-}
+import TopicTag from '../TopicTag/TopicTag'
 
 const QuestionSummary = ({ totalTime, problemChosenList, topicsChosen, difficultiesChosen }) => {
     const problemInTopicCount = new Map();
@@ -26,8 +15,6 @@ const QuestionSummary = ({ totalTime, problemChosenList, topicsChosen, difficult
         problemInTopicCount.set(problem.topic, problemInTopicCount.get(problem.topic) + 1);
         problemInDifficultyCount.set(problem.difficulty, problemInDifficultyCount.get(problem.difficulty) + 1);
     })
-
-    console.log(problemInDifficultyCount, problemInTopicCount);
 
     return (
         <>
@@ -84,18 +71,13 @@ const QuestionSummary = ({ totalTime, problemChosenList, topicsChosen, difficult
                         >
                             {difficultiesChosen.map(difficulty => {
                                 const difficulyStatStyle = {
-                                    margin: 0,
-                                    padding: 0,
-                                    fontSize: '.875rem',
-                                    fontWeight: '500',
-                                    lineHeight: '1.25rem',
                                     color: `${difficulty.labelColor}`,
-                                    textTransform: 'capitalize',
                                 }
                                 return (
                                     <>
                                         <span
-                                            style = {difficulyStatStyle}
+                                        style = {difficulyStatStyle}
+                                            className = {`${styles['difficulty-stat']}`}
                                         >
                                             {difficulty.level}: {problemInDifficultyCount.get(difficulty.level)}
                                         </span>

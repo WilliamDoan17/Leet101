@@ -79,7 +79,20 @@
     padding: 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+}
+
+.difficulty-stat {
+    margin: 0;
+    padding: 0;
+    text-align: 'center';
+    font-size: '.875rem';
+    font-weight: '500';
+    line-height: '1.25rem';
+    text-transform: capitalize;
+}
+
+.difficulty-stat:not(:first-child) {
+    margin: 0 0 0 2rem;
 }
 
 .topic-tags-container {
@@ -89,24 +102,10 @@
     flex-wrap: wrap;
 }
 
-.topic-tag {
-    margin: 0 .25rem .25rem 0;
-    border-radius: 9999px;
-    padding: .125rem .625rem;
-    display: inline-flex;
-    background-color: rgb(243 244 246);
-    align-items: center;
-    font-size: .75rem;
-    font-weight: 500;
-    line-height: 1rem;
-    color: rgb(31 41 55);
-    text-transform: capitalize;
-}
-
 .completion-tracker-container {
     margin: 0;
     padding: 1rem 1.5rem;
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    
 }

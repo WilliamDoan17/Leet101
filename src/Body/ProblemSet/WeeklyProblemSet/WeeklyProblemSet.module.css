@@ -1,0 +1,118 @@
+.container {
+    margin: 1rem 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.week-container {
+    margin: 1rem 0 0 0;
+    border: 1px solid rgb(209 213 219);
+    padding: 0;
+    display: block;
+    background-color: white;
+}
+
+.week-button {
+    margin: 0;
+    border: none;   
+    padding: 1rem 1.5rem;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.week-button-expand {
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid rgb(209 213 219);
+    border-radius: 0;
+}
+
+.week-button:hover {
+    border-color: rgb(209 213 219);
+    transition: none;
+}
+
+.week-button:focus {
+    outline: none;
+}
+
+.week-number-header {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.75rem;
+    color: black;
+    text-transform: capitalize;
+}
+
+.problem-card-container {
+    margin: 0;
+    border-top: 1px solid rgb(209 213 219); 
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    font-weight: 500;
+}
+
+.problem-card-index {
+    width: 2rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    text-align: center;
+    color: rgb(75 85 99);
+}
+
+.problem-info-container {
+    margin: 0 0 0 1.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    flex: 1;
+}
+
+.problem-name {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    text-transform: capitalize;
+    color: rgb(79 70 229);
+    cursor: pointer;
+}
+
+.problem-name:hover {
+    color: rgb(79 70 229);
+    text-decoration: underline;
+}
+
+.problem-other-info {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+}
+
+.problem-difficulty {
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: .875rem;
+    text-transform: capitalize;
+}
+
+.problem-time {
+    margin: 0 0 0 1rem;
+    padding: 0;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: .875rem;
+    color: rgb(75 85 99);
+}

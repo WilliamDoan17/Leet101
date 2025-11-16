@@ -1,12 +1,17 @@
+.block-container {
+    display: block;
+    height: 100%;
+}
+
 .container {
     position: sticky;
+    top: 0;
     display: block;
     box-sizing: border-box;
     width: 16rem;
     margin: 0;
     border-right: 1px solid rgb(229, 231, 235);
     border-bottom: 1px solid rgb(229, 231, 235);
-    height: 100%;
 }
 
 .preference-container {
