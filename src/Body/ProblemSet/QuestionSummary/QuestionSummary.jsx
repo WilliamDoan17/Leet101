@@ -1,5 +1,17 @@
 import styles from './QuestionSummary.module.css'
 
+const TopicTag = ({ topicName, count }) => {
+    return (
+        <>
+            <span
+                className = {`${styles['topic-tag']}`}
+            >
+                {topicName} : {count}
+            </span>
+        </>
+    )
+}
+
 const QuestionSummary = ({ totalTime, problemChosenList, topicsChosen, difficultiesChosen }) => {
     const problemInTopicCount = new Map();
     const problemInDifficultyCount = new Map();
@@ -67,6 +79,30 @@ const QuestionSummary = ({ totalTime, problemChosenList, topicsChosen, difficult
                         >
                             Questions grouped by difficulty
                         </p>
+                        <div
+                            className = {`${styles['difficulty-stats-container']}`}
+                        >
+                            {difficultiesChosen.map(difficulty => {
+                                const difficulyStatStyle = {
+                                    margin: 0,
+                                    padding: 0,
+                                    fontSize: '.875rem',
+                                    fontWeight: '500',
+                                    lineHeight: '1.25rem',
+                                    color: `${difficulty.labelColor}`,
+                                    textTransform: 'capitalize',
+                                }
+                                return (
+                                    <>
+                                        <span
+                                            style = {difficulyStatStyle}
+                                        >
+                                            {difficulty.level}: {problemInDifficultyCount.get(difficulty.level)}
+                                        </span>
+                                    </>
+                                )
+                            })}
+                        </div>
                     </div>
                     <div 
                         className = {`${styles['summary-cell']}`}
@@ -81,7 +117,27 @@ const QuestionSummary = ({ totalTime, problemChosenList, topicsChosen, difficult
                         >
                             Questions grouped by topics
                         </p>
+                        <div
+                            className = {`${styles['topic-tags-container']}`}
+                        >
+                            {topicsChosen.map(topic => {
+                                return (
+                                    <>
+                                        <TopicTag
+                                            topicName = {topic.name}
+                                            count = {problemInTopicCount.get(topic.name)}
+                                        >
+                                        </TopicTag>
+                                    </>
+                                )
+                            })}
+                        </div>
                     </div>  
+                </div>
+                <div
+                    className = {`${styles['completion-tracker-container']}`}
+                >
+                    
                 </div>
             </div>
         </>

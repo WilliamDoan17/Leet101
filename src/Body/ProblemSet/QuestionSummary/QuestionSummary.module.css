@@ -73,3 +73,40 @@
     line-height: 1rem;
     color: rgb(34 197 94);
 }
+
+.difficulty-stats-container {
+    margin: .5rem 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.topic-tags-container {
+    margin: .5rem 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.topic-tag {
+    margin: 0 .25rem .25rem 0;
+    border-radius: 9999px;
+    padding: .125rem .625rem;
+    display: inline-flex;
+    background-color: rgb(243 244 246);
+    align-items: center;
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 1rem;
+    color: rgb(31 41 55);
+    text-transform: capitalize;
+}
+
+.completion-tracker-container {
+    margin: 0;
+    padding: 1rem 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    
+}

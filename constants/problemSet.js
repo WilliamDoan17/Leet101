@@ -529,24 +529,44 @@ problemList.forEach(problem => {
 export const generateProblemChosenList = (weekCount, hoursPerWeek, difficultiesChosen, topicsChosen) => {
     const totalTime = weekCount * hoursPerWeek * 60;
     
-    const initialFilter = problemList.filter(problem => 
-        difficultiesChosen.some(d => d.level === problem.difficulty) && 
-        topicsChosen.some(t => t.name === problem.topic)
-    );
+    // Calculate time budget for each difficulty based on priority weights
+    const totalPriority = difficultiesChosen.reduce((sum, diff) => sum + diff.priority, 0);
+    const timeBudget = {};
     
-    initialFilter.sort((a, b) => b.weight - a.weight);
+    difficultiesChosen.forEach(diff => {
+        timeBudget[diff.level] = totalTime * (diff.priority / totalPriority);
+    });
     
     const resultingList = [];
-    let accumulatedTime = 0;
     
-    for (const problem of initialFilter) {
-        if (accumulatedTime + problem.timeTaken <= totalTime) {
-            resultingList.push(problem);
-            accumulatedTime += problem.timeTaken;
-        } else {
-            break;
+    // Process each difficulty separately
+    difficultiesChosen.forEach(diff => {
+        const level = diff.level;
+        const budget = timeBudget[level];
+        
+        // Filter problems for this difficulty and chosen topics
+        const difficultyProblems = problemList.filter(problem => 
+            problem.difficulty === level && 
+            topicsChosen.some(t => t.name === problem.topic)
+        );
+        
+        // Sort by weight (highest first)
+        difficultyProblems.sort((a, b) => b.weight - a.weight);
+        
+        let accumulatedTime = 0;
+        
+        // Select problems until budget is filled
+        for (const problem of difficultyProblems) {
+            if (accumulatedTime + problem.timeTaken <= budget) {
+                resultingList.push(problem);
+                accumulatedTime += problem.timeTaken;
+            } else {
+                break;
+            }
         }
-    }
+        
+        console.log(`Difficulty ${level}: Budget ${budget.toFixed(0)}min, Used ${accumulatedTime.toFixed(0)}min, Selected ${resultingList.length} problems`);
+    });
     
     return resultingList;
-}
+};
