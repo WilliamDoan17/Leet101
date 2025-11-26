@@ -28,3 +28,21 @@
     font-weight: 500;
     color: rgb(55, 65, 81)
 }
+
+.navigation {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: .5rem;
+}
+
+.navigation-button {
+    color: #646cff;
+}
+
+.navigation-button:hover {
+    color: #646cff;
+    text-decoration: underline;
+}
